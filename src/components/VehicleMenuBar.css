@@ -1,0 +1,32 @@
+.vehiclemenu {
+  display: flex;
+  justify-content: center;
+  column-gap: 5px;
+  margin-top: 300px;
+}
+.vmicon {
+  width: 100px;
+}
+.vmbutton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: 0.15s;
+  border-radius: 10px;
+  background-color: white;
+}
+.vmbutton:hover {
+  background-color: rgb(204, 204, 204);
+}
+.vmbuttonactive {
+  background-color: rgb(136, 136, 136);
+}
+@media (max-width: 800px) {
+  .vmicon {
+    width: 50px;
+  }
+
+  .vehiclemenu {
+    margin-top: 200px;
+  }
+}

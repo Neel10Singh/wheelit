@@ -1,0 +1,69 @@
+.vehiclecard {
+  border: 1px solid rgb(185, 185, 185);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  cursor: pointer;
+  transition: 0.15s;
+  background-color: white;
+}
+.vehiclecard:hover {
+  transform: scale(1.1);
+}
+.vehicleimage {
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.vehiclename {
+  font-weight: 600;
+  margin: 5px 10px;
+}
+.vdetails {
+  font-size: 15px;
+  color: rgb(57, 57, 57);
+  margin: 5px 10px;
+}
+.vehiclecardline {
+  border-top: 1px solid rgb(185, 185, 185);
+  width: 100%;
+}
+.vehiclecardfooter {
+  display: flex;
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
+}
+.vcardrentdetails {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 10px;
+}
+.vehiclecardmapicon {
+  height: 20px;
+  margin-top: 2px;
+}
+.vehicleprice {
+  font-size: 15px;
+  font-weight: 600;
+}
+.vehiclecity {
+  display: flex;
+  border: 1px solid rgb(185, 185, 185);
+  padding: 3px;
+  height: fit-content;
+  margin: 5px 10px;
+}
+.checked {
+  color: orange;
+}
+.vehiclerating {
+  margin: 5px 10px;
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+}

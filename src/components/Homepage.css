@@ -1,0 +1,124 @@
+.backgroundcar {
+  width: 100%;
+  position: absolute;
+  height: 550px;
+  object-fit: cover;
+}
+.backgroundtext {
+  position: relative;
+  top: 150px;
+  left: 50%;
+  translate: -50%;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+}
+.bgtextbig {
+  font-size: 50px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.bgtextsmall {
+  font-size: 30px;
+}
+.inputdetails {
+  position: relative;
+  top: 200px;
+  left: 50%;
+  translate: -50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(0, 0, 0);
+  padding: 20px;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.getcar {
+  border: none;
+  background-color: rgb(49, 49, 49);
+  height: 66px;
+  color: white;
+  font-family: 'Josefin Sans', sans-serif;
+  width: 150px;
+  border-radius: 30px;
+  margin-left: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+  border: 2px solid white;
+}
+.getcar:hover {
+  background-color: black;
+  color: white;
+}
+
+.advimages {
+  display: flex;
+  flex-direction: column;
+  row-gap: 50px;
+  justify-content: center;
+  align-items: center;
+}
+.advimage {
+  height: 500px;
+  object-fit: cover;
+  width: 100%;
+}
+.reviewstitle {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: -40px;
+  font-size: 40px;
+  font-weight: 600;
+  color: rgb(49, 49, 49);
+  text-decoration: underline;
+}
+@media (max-width: 800px) {
+  .backgroundcar {
+    height: 400px;
+    object-fit: cover;
+  }
+  .vmicon {
+    width: 50px;
+  }
+
+  .inputdetails {
+    top: 100px;
+  }
+
+  .vehiclemenu {
+    margin-top: 200px;
+  }
+  .backgroundtext {
+    top: 100px;
+  }
+
+  .bgtextbig {
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .bgtextsmall {
+    font-size: 23px;
+  }
+  .advimage {
+    height: 300px;
+  }
+}
+@media (max-width: 500px) {
+  .inputdetails {
+    transform: scale(0.7);
+  }
+  .pickup {
+    width: 150px;
+  }
+  .advimage {
+    height: 230px;
+  }
+}

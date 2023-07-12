@@ -1,0 +1,190 @@
+.navbar {
+  height: 80px;
+  background-color: black;
+  box-shadow: 2px 2px 5px 5px rgb(202, 199, 199);
+  display: flex;
+  vertical-align: middle;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+  top: 0;
+}
+.invalidlayer {
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  left: 300px;
+  background-color: rgba(0, 0, 0, 0.341);
+  transition: 0.5s;
+}
+.invalidlayerhidden {
+  left: -3000px;
+}
+.hamicon {
+  display: inline-block;
+  cursor: pointer;
+  margin-top: 15px;
+  padding: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.bar1,
+.bar2,
+.bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: #fff9f9;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+/* Rotate first bar */
+.change .bar1 {
+  transform: translate(0, 11px) rotate(-45deg);
+}
+
+/* Fade out the second bar */
+.change .bar2 {
+  opacity: 0;
+}
+
+/* Rotate last bar */
+.change .bar3 {
+  transform: translate(0, -11px) rotate(45deg);
+}
+.home {
+  color: white;
+  display: flex;
+  margin-left: 10px;
+  vertical-align: middle;
+  justify-content: center;
+  width: fit-content;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 10px;
+}
+.hometext {
+  display: flex;
+  flex-direction: column;
+  vertical-align: middle;
+  margin-top: 8px;
+}
+.hometitle {
+  font-size: 30px;
+  font-weight: 600;
+  font-style: italic;
+  font-family: 'Josefin Sans', sans-serif;
+}
+.homesubtitle {
+  font-size: 20px;
+  font-weight: 400;
+
+  font-family: 'Josefin Sans', sans-serif;
+}
+.wheellogo {
+  height: 70%;
+  margin-top: 10px;
+}
+.loginbutton {
+  position: absolute;
+  right: 10px;
+  margin-top: 25px;
+  background-color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 7px;
+  font-size: 20px;
+  font-weight: 400;
+  font-family: 'Josefin Sans', sans-serif;
+  cursor: pointer;
+  box-shadow: 4px 4px rgb(75, 75, 75);
+  transition: 0.2s;
+}
+.loginbutton:hover {
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+}
+.loginbutton:active {
+  right: 6px;
+  margin-top: 29px;
+  box-shadow: none;
+}
+.navmenu {
+  position: fixed;
+  left: 0;
+  top: 80px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  width: 300px;
+  transition: 0.5s;
+  height: 100%;
+  box-shadow: 5px 5px 10px rgba(194, 194, 194, 0.703);
+  z-index: 500;
+}
+.navmenuitem {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  vertical-align: middle;
+  align-items: center;
+  text-decoration: none;
+  color: rgb(74, 73, 73);
+  transition: 0.2s;
+  font-size: 18px;
+}
+.navmenuitem:hover {
+  background-color: rgba(204, 204, 204, 0.696);
+}
+.cityname {
+  position: absolute;
+  right: 4px;
+  color: rgb(0, 0, 0);
+  font-weight: 600;
+  font-style: italic;
+  font-family: 'Josefin Sans', sans-serif;
+}
+.navmenuicon {
+  height: 40%;
+  margin: 3px;
+}
+.navmenuhidden {
+  left: -250px;
+  position: fixed;
+  top: 80px;
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  transition: 0.5s;
+  height: 100%;
+}
+@media (max-width: 800px) {
+  .loginsignup {
+    display: none;
+  }
+  .navbar {
+    background-color: transparent;
+    box-shadow: none;
+  }
+  .home {
+    color: rgb(255, 255, 255);
+    background-color: black;
+    border-radius: 25px;
+    position: absolute;
+    right: 0;
+    transform: scale(0.8);
+  }
+  .wheellogo {
+    height: 40px;
+  }
+  .bar1,
+  .bar2,
+  .bar3 {
+    background-color: #545454;
+  }
+}

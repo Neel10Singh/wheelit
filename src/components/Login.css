@@ -1,0 +1,160 @@
+.loginpage {
+  /* position: relative; */
+  height: 650px;
+}
+.loginbackground {
+  max-height: 100%;
+  width: 100%;
+  object-fit: fill;
+}
+.loginbox {
+  padding-bottom: 20px;
+  padding-left: 20px;
+  background-color: white;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 30%;
+  left: 50%;
+  translate: -50%;
+  border-radius: 50px;
+  box-shadow: -10px -10px 25px rgb(8, 8, 8), 10px 10px 20px rgb(0, 0, 0);
+  width: 50%;
+}
+.loginform {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.loginfield {
+  margin: 10px;
+  font-family: 'Josefin Sans', sans-serif;
+  width: 70%;
+  font-size: 20px;
+  padding: 5px 10px;
+  border-radius: 30px;
+  border: 2px solid gray;
+  color: rgb(58, 58, 58);
+}
+.loginfield:focus {
+  outline: none !important;
+  border: 2px solid rgb(255, 191, 0);
+}
+.loginboxbutton {
+  height: 40px;
+  margin-top: 10px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 18px;
+  width: 100px;
+  background-color: black;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  box-shadow: 3px 3px 5px rgb(110, 110, 110);
+  transition: 0.3s;
+}
+.loginboxbutton:hover {
+  color: rgb(255, 191, 0);
+  translate: -0px -2px;
+}
+.loginboxbutton:active {
+  translate: 2px 2px;
+  box-shadow: none;
+}
+.loginboxtext {
+  font-size: 15px;
+  color: rgb(54, 54, 54);
+}
+.alternateloginbutton {
+  margin-left: 10px;
+  border-radius: 12px;
+  border: none;
+  height: 23px;
+  width: 23px;
+  transition: 0.3s;
+}
+.alternateloginbutton:hover {
+  translate: -0px -2px;
+}
+.phone {
+  background-color: rgb(191, 191, 191);
+  color: rgb(0, 159, 0);
+}
+.google {
+  background-color: rgb(164, 0, 0);
+  color: white;
+}
+.facebook {
+  background-color: rgb(0, 57, 180);
+  color: white;
+}
+.alternatelogins {
+  margin-bottom: 20px;
+}
+.signuptransfer {
+  text-decoration: none;
+  color: rgb(0, 0, 120);
+  border: none;
+  background-color: transparent;
+}
+.signupbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  translate: -50%;
+  background-color: white;
+  width: 60%;
+  z-index: 500;
+  border-radius: 50px;
+  box-shadow: -10px -10px 25px rgb(8, 8, 8), 10px 10px 20px rgb(0, 0, 0);
+}
+.signupboxinvisible {
+  display: none;
+  transition: 0.3s;
+}
+.signupboxtitle {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin-bottom: -10px;
+  align-items: center;
+}
+.closebox {
+  background-color: gray;
+  border: none;
+  border-radius: 12px;
+  width: 22px;
+  height: 22px;
+  color: white;
+  transition: 0.5s;
+  backdrop-filter: blur();
+}
+.closebox:hover {
+  background-color: rgb(56, 56, 56);
+}
+.otp {
+  align-items: start;
+  width: 80%;
+  margin-left: 0px;
+}
+.otphide {
+  display: none;
+}
+@media (max-width: 500px) {
+  .loginpage {
+    height: 900px;
+  }
+  .loginbox,
+  .signupbox {
+    width: 80%;
+  }
+}

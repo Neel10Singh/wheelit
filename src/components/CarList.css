@@ -1,0 +1,43 @@
+.carlistpage {
+  padding-top: 100px;
+  padding-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.daterangeitem {
+  width: 80%;
+}
+.filtercontainer {
+  position: fixed;
+}
+.vehiclepagelist {
+  display: flex;
+  margin: 50px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  column-gap: 20px;
+  row-gap: 20px;
+  transition: 0.5s;
+}
+.vehiclepagelistnarrow {
+  display: flex;
+  margin-left: 300px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-right: 50px;
+
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  column-gap: 20px;
+  row-gap: 20px;
+  transition: 0.5s;
+}
+@media (max-width: 500px) {
+  .vehiclepagelistnarrow {
+    margin-left: 50px;
+  }
+}

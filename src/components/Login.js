@@ -1,7 +1,8 @@
 import React from 'react'
 import './Login.css'
 import backggroundlogin from '../images/loginbackground.jpg'
-function Login() {
+import { Link } from 'react-router-dom'
+function Login({ setisLogin }) {
   const loginsubmit = (e) => {
     e.preventDefault()
   }
@@ -38,13 +39,21 @@ function Login() {
         <form className='loginform' onSubmit={loginsubmit}>
           <input type='text' placeholder='Enter email' className='loginfield' />
           <input
-            type='text'
+            type='password'
             placeholder='Enter password'
             className='loginfield'
           />
-          <button type='submit' className='loginboxbutton'>
-            Log In
-          </button>
+          <Link to='/'>
+            <button
+              type='submit'
+              className='loginboxbutton'
+              onClick={() => {
+                setisLogin(true)
+              }}
+            >
+              Log In
+            </button>
+          </Link>
         </form>
         <div className='alternatelogins'>
           <span className='loginboxtext'>Login with: </span>

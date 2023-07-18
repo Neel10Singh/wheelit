@@ -3,6 +3,7 @@ import './CarList.css'
 import DateRange from './DateRange'
 import VehicleFilter from './VehicleFilter'
 import VehicleCard2 from './VehicleCard2'
+import { Link } from 'react-router-dom'
 
 function CarList({
   cityname,
@@ -27,14 +28,30 @@ function CarList({
         />
       </div>
       <div className={filtershow ? 'vehiclepagelistnarrow' : 'vehiclepagelist'}>
-        <VehicleCard2 value={value} />
-        <VehicleCard2 value={value} />
-        <VehicleCard2 value={value} />
-        <VehicleCard2 value={value} />
-        <VehicleCard2 value={value} />
-        <VehicleCard2 value={value} />
-        <VehicleCard2 value={value} />
-        <VehicleCard2 value={value} />
+        <Link to='/cardets' style={{ textDecoration: 'none', color: 'black' }}>
+          <VehicleCard2 value={value} />
+        </Link>
+        <Link to='/cardets' style={{ textDecoration: 'none', color: 'black' }}>
+          <VehicleCard2 value={value} />
+        </Link>
+        <Link to='/cardets' style={{ textDecoration: 'none', color: 'black' }}>
+          <VehicleCard2 value={value} />
+        </Link>
+        <Link to='/cardets' style={{ textDecoration: 'none', color: 'black' }}>
+          <VehicleCard2 value={value} />
+        </Link>
+        <Link to='/cardets' style={{ textDecoration: 'none', color: 'black' }}>
+          <VehicleCard2 value={value} />
+        </Link>
+        <Link to='/cardets' style={{ textDecoration: 'none', color: 'black' }}>
+          <VehicleCard2 value={value} />
+        </Link>
+        <Link to='/cardets' style={{ textDecoration: 'none', color: 'black' }}>
+          <VehicleCard2 value={value} />
+        </Link>
+        <Link to='/cardets' style={{ textDecoration: 'none', color: 'black' }}>
+          <VehicleCard2 value={value} />
+        </Link>
       </div>
     </div>
   )

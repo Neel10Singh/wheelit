@@ -23,7 +23,7 @@ function Footer() {
         rental options for all your needs!
       </p>
       <div className='footertitle'>
-        <p>Why Zoomcar?</p>
+        <p>Why Wheelit?</p>
       </div>
       <p className='footercontent'>
         Unlimited KMs You must never stop exploring! That’s why you get

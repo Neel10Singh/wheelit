@@ -7,7 +7,7 @@ import mapicon from '../images/mapicon.png'
 import policyicon from '../images/policyicon.png'
 import helpicon from '../images/helpicon.png'
 
-function Bar({ cityname }) {
+function Bar({ cityname, islogin }) {
   const [isActive, setisActive] = useState(false)
 
   const myFunction = (event) => {
@@ -25,7 +25,7 @@ function Bar({ cityname }) {
         </div>
       </div>
       <div className={isActive ? 'invalidlayer' : 'invalidlayerhidden'} />
-      <Link className='home'>
+      <Link className='home' to='/'>
         <img src={wheellogo} alt='logo' className='wheellogo' />
         <div className='hometext'>
           <span className='hometitle'>Wheel it</span>
@@ -33,23 +33,54 @@ function Bar({ cityname }) {
         </div>
       </Link>
       <div className='loginsignup'>
-        <button className='loginbutton'>Login/Signup</button>
+        {!islogin && (
+          <Link to='/login'>
+            <button className='loginbutton'>Login/Signup</button>
+          </Link>
+        )}
+        {islogin && (
+          <p
+            style={{
+              color: 'white',
+              position: 'absolute',
+              right: '15px',
+              fontSize: '25px',
+            }}
+          >
+            Hello User!
+          </p>
+        )}
       </div>
       <div className={isActive ? 'navmenu' : 'navmenuhidden'}>
-        <Link className='navmenuitem'>
-          <img src={loginicon} className='navmenuicon' />
-          <span className='navmenutext'>Login/Signup</span>
-        </Link>
-        <Link className='navmenuitem'>
+        {!islogin && (
+          <Link
+            className='navmenuitem'
+            to='/login'
+            onClick={() => setisActive(false)}
+          >
+            <img src={loginicon} className='navmenuicon' />
+            <span className='navmenutext'>Login/Signup</span>
+          </Link>
+        )}
+        {islogin && (
+          <span className='navmenuitem' style={{ marginLeft: '15px' }}>
+            Hello User!
+          </span>
+        )}
+        <Link
+          className='navmenuitem'
+          to='/citychange'
+          onClick={() => setisActive(false)}
+        >
           <img src={mapicon} className='navmenuicon' />
           <span className='navmenutext'>Change City</span>
           <span className='cityname'>{cityname}</span>
         </Link>
-        <Link className='navmenuitem'>
+        <Link className='navmenuitem' onClick={() => setisActive(false)}>
           <img src={policyicon} className='navmenuicon' />
           <span className='navmenutext'>Policies</span>
         </Link>
-        <Link className='navmenuitem'>
+        <Link className='navmenuitem' onClick={() => setisActive(false)}>
           <img src={helpicon} className='navmenuicon' />
           <span className='navmenutext'>Help & Support</span>
         </Link>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import DateRange from './DateRange'
 import background from '../images/loginbackground.jpg'
 import './Homepage.css'
-
+import { Link } from 'react-router-dom'
 import myloc from '../images/mylocation.png'
 import VehicleMenuBar from './VehicleMenuBar'
 import adv1 from '../images/adv1.jpg'
@@ -10,6 +10,7 @@ import adv2 from '../images/adv2.jpg'
 import adv3 from '../images/adv3.jpg'
 import VehicleMenu from './VehicleMenu'
 import Reviews from './Reviews'
+import Footer from './Footer'
 
 function Homepage({ value, setValue, vehicledataitems, setVehicleDataItems }) {
   const handlesubmit = (event) => {
@@ -28,9 +29,11 @@ function Homepage({ value, setValue, vehicledataitems, setVehicleDataItems }) {
 
       <form onSubmit={handlesubmit} className='inputdetails'>
         <DateRange value={value} setValue={setValue} />
-        <button type='submit' className='getcar'>
-          GET VEHICLE
-        </button>
+        <Link to='/carlist'>
+          <button type='submit' className='getcar'>
+            GET VEHICLE
+          </button>
+        </Link>
       </form>
       <VehicleMenuBar
         vehicledataitems={vehicledataitems}
@@ -46,6 +49,7 @@ function Homepage({ value, setValue, vehicledataitems, setVehicleDataItems }) {
         <p>Hear from our guests</p>
       </div>
       <Reviews />
+      <Footer />
     </div>
   )
 }

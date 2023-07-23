@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import './VehiclePage.css'
+import './VehicleComfirmPage.css'
 import img1 from '../images/Lamborghini.jpg'
 import img2 from '../images/vehicleimagesdata/baleno.jpg'
 import img3 from '../images/vehicleimagesdata/swiftdzire.jpg'
@@ -17,91 +17,10 @@ import {
 } from 'firebase/firestore'
 
 const vechicleimages = [img1, img2, img3, img4, img5]
-function VehiclePage({
-  value,
-  cityname,
-  vehiclelist,
-  setIsModalOpen,
-  setModalContent,
-}) {
-  const navigate = useNavigate()
-  const [currentuser, setCurrentuser] = useState({})
-
-  const usersRef = collection(db, 'users')
-  useEffect(() => {
-    const getUserlist = async () => {
-      const data = await getDocs(usersRef)
-      let datalist = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-      datalist = datalist.filter((data) => {
-        return data.email === auth?.currentUser?.email
-      })
-      setCurrentuser(datalist[0])
-    }
-    getUserlist()
-  }, [])
-
+function VehiclePage({ cityname }) {
   const location = useLocation()
   const vehicle = location.state
-
   const [cimg, setCimg] = useState(vechicleimages[0])
-  const [houseno, setHouseno] = useState('')
-  const [street, setStreet] = useState('')
-  const [locality, setLocality] = useState('')
-  const [nearby, setNearby] = useState('')
-
-  const makebooking = async (vehicle) => {
-    let date = value[0].$D.toString()
-    let month = (value[0].$M + 1).toString()
-    let year = value[0].$y.toString()
-
-    const startdate = date.concat('/', month, '/', year)
-    date = value[1].$D.toString()
-    month = (value[1].$M + 1).toString()
-    year = value[1].$y.toString()
-
-    const enddate = date.concat('/', month, '/', year)
-    const vehicledoc = doc(db, 'vehicles', vehicle.id)
-    await updateDoc(vehicledoc, {
-      status: true,
-      start: startdate,
-      end: enddate,
-      totalamount:
-        vehicle.price *
-          ((value[1].$M - value[0].$M) * 30 + value[1].$D - value[0].$D) +
-        250 +
-        99,
-    })
-    console.log(currentuser)
-    const userdoc = doc(db, 'users', currentuser.id)
-    vehicle.totalamount =
-      vehicle.price *
-        ((value[1].$M - value[0].$M) * 30 + value[1].$D - value[0].$D) +
-      250 +
-      99
-    vehicle.status = true
-    vehicle.start = startdate
-    vehicle.end = enddate
-    await updateDoc(userdoc, { upcomingtrips: arrayUnion(vehicle) })
-    let completeadd = houseno.concat(
-      ',',
-      street,
-      ',',
-      locality,
-      ',',
-      nearby,
-      ',',
-      cityname
-    )
-    vehicle.deliveryaddress = completeadd
-    await updateDoc(vehicledoc, { deliveryaddress: completeadd })
-
-    navigate('/userdashboard')
-    console.log('t')
-    setIsModalOpen(true)
-    console.log('t')
-    setModalContent('Upcoming jouney added, Vehicle Booked.')
-    console.log('t')
-  }
   return (
     <>
       <div className='vehicleinfopage'>
@@ -149,13 +68,13 @@ function VehiclePage({
                 <span className='vpagebookingpoint'>
                   Booking from:
                   <br />
-                  {value[0].$D}:{value[0].$M + 1}:{value[0].$y}
+                  {vehicle.start}
                 </span>
                 <span className='vpagebookingpoint'>&#45;&#62;</span>
                 <span className='vpagebookingpoint2'>
                   Booking till:
                   <br />
-                  {value[1].$D}:{value[1].$M + 1}:{value[1].$y}
+                  {vehicle.end}
                 </span>
               </div>
             </div>
@@ -173,54 +92,16 @@ function VehiclePage({
           <div className='vpaymentoption'>
             <div className='vpaymentoptionblock'>
               <span className='vpaymenttitle'>Delivery/Pickup Address</span>
-              <input
-                type='text'
-                placeholder='House No.'
-                className='cpaymentinput'
-                onChange={(e) => {
-                  setHouseno(e.target.value)
-                }}
-              />
-              <input
-                type='text'
-                placeholder='Street/Colony'
-                className='cpaymentinput'
-                onChange={(e) => {
-                  setStreet(e.target.value)
-                }}
-              />
-              <input
-                type='text'
-                placeholder='Area/Locality'
-                className='cpaymentinput'
-                onChange={(e) => {
-                  setLocality(e.target.value)
-                }}
-              />
-              <input
-                type='text'
-                placeholder='Nearby Landmark'
-                className='cpaymentinput'
-                onChange={(e) => {
-                  setNearby(e.target.value)
-                }}
-              />
-              <input
-                type='text'
-                placeholder='House No.'
-                className='cpaymentinput'
-                value={cityname}
-              />
+              <textarea className='addressv'>
+                {vehicle.deliveryaddress}
+              </textarea>
             </div>
 
             <div className='vpaymentoptionblock'>
               <span className='vpaymenttitle'>Wallet</span>
               <span className='cpaymentdets'>
                 Base Price: <i className='fa fa-rupee'></i>
-                {vehicle.price *
-                  ((value[1].$M - value[0].$M) * 30 +
-                    value[1].$D -
-                    value[0].$D)}
+                {vehicle.totalamount - 250 - 99}
               </span>
               <span className='cpaymentdets'>
                 Trip Protection Charge: <i className='fa fa-rupee'></i>250
@@ -234,17 +115,9 @@ function VehiclePage({
               </span>
               <span className='cpaymenttitle'>
                 Final Price: <i className='fa fa-rupee'></i>
-                {vehicle.price *
-                  ((value[1].$M - value[0].$M) * 30 +
-                    value[1].$D -
-                    value[0].$D) +
-                  250 +
-                  99}
+                {vehicle.totalamount}
               </span>
             </div>
-            <button className='vpagebook' onClick={() => makebooking(vehicle)}>
-              Book {vehicle.type}
-            </button>
           </div>
         </div>
       </div>

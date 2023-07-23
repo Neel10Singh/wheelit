@@ -10,6 +10,9 @@ import Login from './components/Login'
 import ChangeCity from './components/ChangeCity'
 import VehiclePage from './components/VehiclePage'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Modal from './components/Modal'
+import UserDash from './components/UserDash'
+import VehicleConfirmPage from './components/VehicleConfirmPage'
 
 const vdatacontext = React.createContext()
 const currdate = new Date()
@@ -21,19 +24,32 @@ function App() {
   const [vehicledataitems, setVehicleDataItems] = useState(vehicledata)
   const [filtershow, setFilterShow] = useState(false)
   const [islogin, setisLogin] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [modalContent, setModalContent] = useState('')
+  const [vehiclelist, setVehicleList] = useState([])
+  const closeModal = () => {
+    setIsModalOpen(false)
+  }
   return (
     <>
       <Bar cityname={cityname} islogin={islogin} />
+
+      {isModalOpen && (
+        <Modal closeModal={closeModal} modalContent={modalContent} />
+      )}
       <Routes>
         <Route
           exact
           path='/'
           element={
             <Homepage
+              islogin={islogin}
               value={value}
               setValue={setValue}
               vehicledataitems={vehicledataitems}
               setVehicleDataItems={setVehicleDataItems}
+              setIsModalOpen={setIsModalOpen}
+              setModalContent={setModalContent}
             />
           }
         ></Route>
@@ -48,21 +64,59 @@ function App() {
               setVehicleDataItems={setVehicleDataItems}
               filtershow={filtershow}
               setFilterShow={setFilterShow}
+              vehiclelist={vehiclelist}
+              setVehicleList={setVehicleList}
             />
           }
         ></Route>
         <Route
           path='/login'
-          element={<Login setisLogin={setisLogin} />}
+          element={
+            <Login
+              setisLogin={setisLogin}
+              setIsModalOpen={setIsModalOpen}
+              setModalContent={setModalContent}
+            />
+          }
         ></Route>
         <Route
           path='/citychange'
-          element={<ChangeCity cityname={cityname} setCityName={setCityName} />}
+          element={
+            <ChangeCity
+              cityname={cityname}
+              setCityName={setCityName}
+              setIsModalOpen={setIsModalOpen}
+              setModalContent={setModalContent}
+            />
+          }
         ></Route>
         <Route
           path='/cardets'
-          element={<VehiclePage value={value} cityname={cityname} />}
+          element={
+            <VehiclePage
+              value={value}
+              cityname={cityname}
+              vehiclelist={vehiclelist}
+              setIsModalOpen={setIsModalOpen}
+              setModalContent={setModalContent}
+            />
+          }
         ></Route>
+        <Route
+          path='/userdashboard'
+          element={
+            <UserDash
+              islogin={islogin}
+              setisLogin={setisLogin}
+              setIsModalOpen={setIsModalOpen}
+              setModalContent={setModalContent}
+            />
+          }
+        ></Route>
+        <Route
+          path='/confirmpage'
+          element={<VehicleConfirmPage cityname={cityname} />}
+        />
       </Routes>
     </>
   )

@@ -6,6 +6,7 @@ import loginicon from '../images/loginicon.png'
 import mapicon from '../images/mapicon.png'
 import policyicon from '../images/policyicon.png'
 import helpicon from '../images/helpicon.png'
+import { auth } from '../config/firebase'
 
 function Bar({ cityname, islogin }) {
   const [isActive, setisActive] = useState(false)
@@ -47,7 +48,12 @@ function Bar({ cityname, islogin }) {
               fontSize: '25px',
             }}
           >
-            Hello User!
+            Hello{' '}
+            <Link to='/userdashboard'>
+              <button className='userdashbutton'>
+                {auth?.currentUser?.email}
+              </button>
+            </Link>
           </p>
         )}
       </div>
@@ -64,7 +70,7 @@ function Bar({ cityname, islogin }) {
         )}
         {islogin && (
           <span className='navmenuitem' style={{ marginLeft: '15px' }}>
-            Hello User!
+            Hello {auth?.currentUser?.email}!
           </span>
         )}
         <Link

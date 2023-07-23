@@ -2,10 +2,20 @@ import React from 'react'
 import backggroundlogin from '../images/loginbackground.jpg'
 import './Changecity.css'
 import Footer from './Footer'
+import { useNavigate } from 'react-router-dom'
 
-function ChangeCity({ cityname, setCityName }) {
+function ChangeCity({
+  cityname,
+  setCityName,
+  setIsModalOpen,
+  setModalContent,
+}) {
+  const navigate = useNavigate()
   const cahngecitybutton = (event) => {
     setCityName(event.target.id)
+    navigate('/')
+    setIsModalOpen(true)
+    setModalContent('City Name Changed Successfully')
   }
   return (
     <>

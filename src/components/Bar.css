@@ -104,14 +104,27 @@
   box-shadow: 4px 4px rgb(75, 75, 75);
   transition: 0.2s;
 }
-.loginbutton:hover {
+.userdashbutton {
+  background-color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 7px;
+  font-size: 20px;
+  font-weight: 400;
+  font-family: 'Josefin Sans', sans-serif;
+  cursor: pointer;
+  box-shadow: 4px 4px rgb(75, 75, 75);
+  transition: 0.2s;
+}
+.loginbutton:hover,
+.userdashbutton:hover {
   background-color: black;
   color: white;
   border: 1px solid white;
 }
-.loginbutton:active {
-  right: 6px;
-  margin-top: 29px;
+.loginbutton:active,
+.userdashbutton:active {
+  transform: translate(2px, 2px);
   box-shadow: none;
 }
 .navmenu {

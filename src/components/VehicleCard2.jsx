@@ -3,36 +3,38 @@ import './VehicleCard2.css'
 import { vehicledata2 } from '../vehicledata2'
 import Starrating from './Starrating'
 
-function VehicleCard2({ value }) {
+function VehicleCard2({ value, vehicle }) {
   const {
     id,
     type,
-    vehiclename,
+    name,
     vehicleimage,
     rating,
-    tripnumber,
-    transmissiontype,
-    powertype,
+    trips,
+    transmission,
+    power,
     seats,
     price,
     city,
-  } = vehicledata2
+    about,
+    features,
+  } = vehicle
 
   return (
     <div key={id} className='vehiclecard2'>
-      <img src={vehicleimage} alt={vehiclename} className='vehicleimage2' />
+      <img src={vehicleimage} alt={name} className='vehicleimage2' />
       <div className='vehiclerating2'>
         <div id='vehicleratingstars2'>
           <Starrating rating={rating} />
         </div>
         <span className='vdetails2'>
-          {rating}({tripnumber} Trips)
+          {rating}({trips} Trips)
         </span>
       </div>
 
-      <span className='vehiclename2'>{vehiclename}</span>
+      <span className='vehiclename2'>{name}</span>
       <span className='vdetails2'>
-        {transmissiontype} &#x2022; {powertype} &#x2022; {seats} Seats
+        {transmission} &#x2022; {power} &#x2022; {seats} Seats
       </span>
       <div className='vehiclecardline2'></div>
       <div className='vehiclecardfooter2'>

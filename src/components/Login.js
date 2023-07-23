@@ -1,10 +1,59 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Login.css'
 import backggroundlogin from '../images/loginbackground.jpg'
-import { Link } from 'react-router-dom'
-function Login({ setisLogin }) {
-  const loginsubmit = (e) => {
+import { Link, useNavigate } from 'react-router-dom'
+
+import { auth, GoogleProvider } from '../config/firebase'
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from 'firebase/auth'
+import { collection, addDoc } from 'firebase/firestore'
+import { db } from '../config/firebase'
+
+import googleicon from '../images/googleicon.png'
+
+function Login({ setisLogin, setIsModalOpen, setModalContent }) {
+  const navigate = useNavigate()
+  useEffect(() => {
+    document.getElementById('email').value = ''
+    document.getElementById('pass').value = ''
+  }, [])
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const userRef = collection(db, 'users')
+
+  const loginsubmit = async (e) => {
     e.preventDefault()
+
+    try {
+      const em = document.getElementById('email')
+      setEmail(em.value)
+      const pa = document.getElementById('pass')
+      setPassword(pa.value)
+      await signInWithEmailAndPassword(auth, email, password)
+      setIsModalOpen(true)
+      setModalContent('Sussessfully signed in!')
+      setisLogin(true)
+      navigate('/')
+    } catch (err) {
+      console.error(err)
+    }
+  }
+  const signinwithgoogle = async (e) => {
+    e.preventDefault()
+
+    try {
+      await signInWithPopup(auth, GoogleProvider)
+      setIsModalOpen(true)
+      setModalContent('Sussessfully signed in!')
+      setisLogin(true)
+      navigate('/')
+    } catch (err) {
+      console.error(err)
+    }
   }
   const signupactive = () => {
     const signbox = document.getElementById('signupbox')
@@ -16,12 +65,31 @@ function Login({ setisLogin }) {
     signbox.classList.remove('signupbox')
     signbox.classList.add('signupboxinvisible')
   }
-  const signupclick = (event) => {
+  const signupclick = async (event) => {
     event.preventDefault()
-    const otpbox = document.getElementById('otpdiv')
-    otpbox.classList.add('otp')
-    otpbox.classList.remove('otphide')
+    try {
+      const em = document.getElementById('email')
+      setEmail(em.value)
+      const pa = document.getElementById('pass')
+      setPassword(pa.value)
+
+      await createUserWithEmailAndPassword(auth, email, password)
+      await addDoc(userRef, {
+        email: email,
+        password: password,
+        upcomingtrips: [],
+        deliveryaddress: '',
+      })
+      setIsModalOpen(true)
+      setModalContent('Account Created & Sussessfully signed in!')
+      setisLogin(true)
+      signupdeactive()
+      navigate('/')
+    } catch (err) {
+      console.error(err)
+    }
   }
+
   return (
     <div
       className='loginpage'
@@ -37,38 +105,33 @@ function Login({ setisLogin }) {
       {/* <img src={backggroundlogin} className='loginbackground' /> */}
       <div className='loginbox'>
         <form className='loginform' onSubmit={loginsubmit}>
-          <input type='text' placeholder='Enter email' className='loginfield' />
+          <input
+            type='text'
+            placeholder='Enter email'
+            className='loginfield'
+            id='email'
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <input
             type='password'
             placeholder='Enter password'
             className='loginfield'
+            id='pass'
+            onChange={(e) => setPassword(e.target.value)}
           />
-          <Link to='/'>
-            <button
-              type='submit'
-              className='loginboxbutton'
-              onClick={() => {
-                setisLogin(true)
-              }}
-            >
-              Log In
-            </button>
-          </Link>
+
+          <button type='submit' className='loginboxbutton'>
+            Log In
+          </button>
         </form>
         <div className='alternatelogins'>
-          <span className='loginboxtext'>Login with: </span>
-          <button className='alternateloginbutton phone'>
-            <i className='fa fa-phone'></i>
-          </button>
-          <button className='alternateloginbutton google'>
-            <i className='fa fa-google'></i>
-          </button>
-          <button className='alternateloginbutton facebook'>
-            <i className='fa fa-facebook'></i>
+          <button className='alternateloginbutton' onClick={signinwithgoogle}>
+            <img src={googleicon} className='google' />
+            <span className='loginboxtext'> Continue with Google</span>
           </button>
         </div>
         <span className='loginboxtext'>
-          Don' have an account?{' '}
+          Don't have an account?{' '}
           <button className='signuptransfer' onClick={signupactive}>
             Sign Up
           </button>
@@ -83,24 +146,20 @@ function Login({ setisLogin }) {
         </div>
 
         <form className='loginform'>
-          <input type='text' placeholder='Full Name' className='loginfield' />
           <input
-            type='text'
-            placeholder='Phone Number'
+            type='email'
+            placeholder='email id'
             className='loginfield'
+            onChange={(e) => setEmail(e.target.value)}
           />
-          <input type='email' placeholder='email id' className='loginfield' />
 
           <input
             type='password'
             placeholder='Enter password'
             className='loginfield'
+            onChange={(e) => setPassword(e.target.value)}
           />
-          <input
-            type='password'
-            placeholder='Confirm password'
-            className='loginfield'
-          />
+
           <button
             type='submit'
             className='loginboxbutton'
@@ -108,17 +167,6 @@ function Login({ setisLogin }) {
           >
             Sign Up
           </button>
-          <div className='otphide' id='otpdiv'>
-            <span className='loginboxtext'>
-              Enter 6 digit otp sent to your email id
-            </span>
-            <form className='otp form'>
-              <input type='text' className='loginfield'></input>
-              <button type='submit' className='loginboxbutton'>
-                Confirm
-              </button>
-            </form>
-          </div>
         </form>
       </div>
     </div>

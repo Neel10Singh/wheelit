@@ -69,9 +69,18 @@ function Bar({ cityname, islogin }) {
           </Link>
         )}
         {islogin && (
-          <span className='navmenuitem' style={{ marginLeft: '15px' }}>
-            Hello {auth?.currentUser?.email}!
-          </span>
+          <Link to='/userdashboard'>
+            <span
+              className='navmenuitem'
+              style={{
+                paddingLeft: '15px',
+                width: '95%',
+                textDecoration: 'none',
+              }}
+            >
+              Hello {auth?.currentUser?.email}!
+            </span>
+          </Link>
         )}
         <Link
           className='navmenuitem'

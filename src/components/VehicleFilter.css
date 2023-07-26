@@ -14,7 +14,7 @@
   z-index: 500;
   position: fixed;
   left: -100px;
-  top: 200px;
+  bottom: 410px;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
 }
@@ -31,13 +31,13 @@
   z-index: 500;
   position: fixed;
   left: 0;
-  top: 200px;
+  bottom: 410px;
   border-top-right-radius: 20px;
 }
 .filtermenu {
   position: fixed;
   left: 0;
-  top: 235px;
+  bottom: 0;
   display: flex;
   flex-direction: column;
   font-family: 'Josefin Sans', sans-serif;
@@ -53,12 +53,12 @@
 .filtermenuhide {
   left: -300px;
   position: fixed;
-  top: 235px;
+  bottom: 0;
   display: flex;
   flex-direction: column;
   width: 300px;
   transition: 0.5s;
-  height: 100%;
+  height: 410px;
 }
 .filtermenu p,
 .filtermenuhide p {

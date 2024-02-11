@@ -1,35 +1,35 @@
-import React, { useState, useContext } from 'react'
-import './App.css'
-import Bar from './components/Bar'
-import Homepage from './components/Homepage'
-import CarList from './components/CarList'
-import Footer from './components/Footer'
-import dayjs from 'dayjs'
-import { vehicledata } from './vehicledata'
-import Login from './components/Login'
-import ChangeCity from './components/ChangeCity'
-import VehiclePage from './components/VehiclePage'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Modal from './components/Modal'
-import UserDash from './components/UserDash'
-import VehicleConfirmPage from './components/VehicleConfirmPage'
+import React, { useState, useContext } from "react";
+import "./App.css";
+import Bar from "./components/Bar";
+import Homepage from "./components/Homepage";
+import CarList from "./components/CarList";
+import Footer from "./components/Footer";
+import dayjs from "dayjs";
+import { vehicledata } from "./vehicledata";
+import Login from "./components/Login";
+import ChangeCity from "./components/ChangeCity";
+import VehiclePage from "./components/VehiclePage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Modal from "./components/Modal";
+import UserDash from "./components/UserDash";
+import VehicleConfirmPage from "./components/VehicleConfirmPage";
 
-const vdatacontext = React.createContext()
-const currdate = new Date()
+const vdatacontext = React.createContext();
+const currdate = new Date();
 
 function App() {
-  const [cityname, setCityName] = useState('Delhi')
-  const [pickupaddress, setPickupAddress] = useState('')
-  const [value, setValue] = useState([dayjs(currdate), dayjs(currdate)])
-  const [vehicledataitems, setVehicleDataItems] = useState(vehicledata)
-  const [filtershow, setFilterShow] = useState(false)
-  const [islogin, setisLogin] = useState(false)
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [modalContent, setModalContent] = useState('')
-  const [vehiclelist, setVehicleList] = useState([])
+  const [cityname, setCityName] = useState("Delhi");
+  const [pickupaddress, setPickupAddress] = useState("");
+  const [value, setValue] = useState([dayjs(currdate), dayjs(currdate)]);
+  const [vehicledataitems, setVehicleDataItems] = useState(vehicledata);
+  const [filtershow, setFilterShow] = useState(false);
+  const [islogin, setisLogin] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState("");
+  const [vehiclelist, setVehicleList] = useState(vehicledata);
   const closeModal = () => {
-    setIsModalOpen(false)
-  }
+    setIsModalOpen(false);
+  };
   return (
     <>
       <Bar cityname={cityname} islogin={islogin} />
@@ -40,7 +40,7 @@ function App() {
       <Routes>
         <Route
           exact
-          path='/'
+          path="/"
           element={
             <Homepage
               islogin={islogin}
@@ -54,7 +54,7 @@ function App() {
           }
         ></Route>
         <Route
-          path='/carlist'
+          path="/carlist"
           element={
             <CarList
               cityname={cityname}
@@ -70,7 +70,7 @@ function App() {
           }
         ></Route>
         <Route
-          path='/login'
+          path="/login"
           element={
             <Login
               setisLogin={setisLogin}
@@ -80,7 +80,7 @@ function App() {
           }
         ></Route>
         <Route
-          path='/citychange'
+          path="/citychange"
           element={
             <ChangeCity
               cityname={cityname}
@@ -91,7 +91,7 @@ function App() {
           }
         ></Route>
         <Route
-          path='/cardets'
+          path="/cardets"
           element={
             <VehiclePage
               value={value}
@@ -103,7 +103,7 @@ function App() {
           }
         ></Route>
         <Route
-          path='/userdashboard'
+          path="/userdashboard"
           element={
             <UserDash
               islogin={islogin}
@@ -114,12 +114,12 @@ function App() {
           }
         ></Route>
         <Route
-          path='/confirmpage'
+          path="/confirmpage"
           element={<VehicleConfirmPage cityname={cityname} />}
         />
       </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -108,7 +108,8 @@
   left: 50%;
   translate: -50%;
   background-color: white;
-  width: 60%;
+  padding: 30px;
+  /* width: 60%; */
   z-index: 500;
   border-radius: 50px;
   box-shadow: -10px -10px 25px rgb(8, 8, 8), 10px 10px 20px rgb(0, 0, 0);
@@ -132,6 +133,9 @@
   width: 22px;
   height: 22px;
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   transition: 0.5s;
   backdrop-filter: blur();
 }

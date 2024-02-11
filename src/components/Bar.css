@@ -4,6 +4,7 @@
   box-shadow: 2px 2px 5px 5px rgb(202, 199, 199);
   display: flex;
   vertical-align: middle;
+  
   position: fixed;
   width: 100%;
   z-index: 999;
@@ -58,7 +59,7 @@
   color: white;
   display: flex;
   margin-left: 10px;
-  vertical-align: middle;
+  align-items: center;
   justify-content: center;
   width: fit-content;
   background-color: transparent;
@@ -78,6 +79,7 @@
   font-weight: 600;
   font-style: italic;
   font-family: 'Josefin Sans', sans-serif;
+  margin-bottom: -8px;
 }
 .homesubtitle {
   font-size: 20px;
@@ -108,6 +110,7 @@
   background-color: white;
   border: none;
   border-radius: 20px;
+  color: black;
   padding: 7px;
   font-size: 20px;
   font-weight: 400;
@@ -177,7 +180,7 @@
   height: 100%;
 }
 @media (max-width: 800px) {
-  .loginsignup {
+  .loginbutton, .userdisplay {
     display: none;
   }
   .navbar {

@@ -3,6 +3,7 @@
   margin-top: 110px;
   background-color: white;
   padding: 20px;
+  overflow-y: hidden;
 }
 .vehicleimages {
   display: flex;
@@ -55,7 +56,6 @@
   flex: 70%;
   background-color: white;
   padding: 20px;
-  height: 550px;
 }
 .vpageicon {
   color: rgb(52, 52, 52);

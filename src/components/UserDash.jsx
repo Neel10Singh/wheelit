@@ -6,14 +6,15 @@ import './userdash.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { auth } from '../firebase'
+import { getBookings } from '../redux/slices/bookingSlice'
 
-function UserDash({ islogin, setisLogin, setIsModalOpen, setModalContent }) {
-  const [currentuserdash, setCurrentuserdash] = useState({})
+function UserDash({ setIsModalOpen, setModalContent }) {
+  let bookings = useSelector((state) => state.bookings.bookingList)
+  console.log(bookings)
   const dispatch = useDispatch()
   const user = useSelector((state) => state.user.userInfo)
   useEffect(() => {
-    const getUserlist = async () => {}
-    getUserlist()
+    dispatch(getBookings(user))
   }, [])
 
   const navigate = useNavigate()
@@ -40,7 +41,7 @@ function UserDash({ islogin, setisLogin, setIsModalOpen, setModalContent }) {
       <div className='userinfodash2'>
         <span>Upcomming Bookings:</span>
 
-        {currentuserdash?.upcomingtrips?.map((booking) => {
+        {bookings?.map((booking) => {
           return (
             <Link
               to='/confirmpage'
@@ -48,9 +49,9 @@ function UserDash({ islogin, setisLogin, setIsModalOpen, setModalContent }) {
               style={{ textDecoration: 'none' }}
             >
               <button className='userbooking'>
-                {booking.name}
+                {booking.vehiclename}
                 <div className='bookingdatesbut'>
-                  from: {booking.start} to: {booking.end}
+                  from: {booking.fromdate} to: {booking.todate}
                 </div>{' '}
                 <div className='bookingdatesbut'>
                   Price: {booking.totalamount}

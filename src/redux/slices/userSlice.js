@@ -8,15 +8,17 @@ import {
   updateProfile,
 } from 'firebase/auth'
 import { useEffect } from 'react'
-import { doc, setDoc } from 'firebase/firestore'
+import { doc, getDoc, setDoc } from 'firebase/firestore'
 export const updateUser = createAsyncThunk(
   'users/update',
   async ({ email, password }) => {
     const res = await signInWithEmailAndPassword(auth, email, password)
     const user = res.user
     console.log(user)
-    localStorage.setItem('user', JSON.stringify(user))
-    return user
+    const docRef = doc(db, 'users', user.uid)
+    const docSnap = await getDoc(docRef)
+    localStorage.setItem('user', JSON.stringify(docSnap.data()))
+    return docSnap.data()
   }
 )
 export const addUser = createAsyncThunk(
@@ -32,6 +34,7 @@ export const addUser = createAsyncThunk(
       displayName: name,
       email: email,
       password: password,
+      bookings: [],
     }).catch((err) => console.log(err))
     return auth.currentUser
   }
@@ -48,6 +51,11 @@ export const userSlice = createSlice({
     logOut: (state) => {
       state.userInfo = null
       localStorage.setItem('user', null)
+    },
+    setUser: (state, action) => {
+      state.userInfo = action.payload
+      localStorage.setItem('user', state.userInfo)
+      console.log(action.payload)
     },
   },
   extraReducers: (builder) => {
@@ -77,5 +85,5 @@ export const userSlice = createSlice({
     })
   },
 })
-export const { logOut } = userSlice.actions
+export const { logOut, setUser } = userSlice.actions
 export default userSlice.reducer

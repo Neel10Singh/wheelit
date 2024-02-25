@@ -6,8 +6,6 @@ import car from '../images/car.png'
 import luxury from '../images/luxurycar.png'
 import suv from '../images/suv.png'
 import { vehicledata } from '../vehicledata'
-import { filterreducer } from './filterreducer'
-import { Applyfilters } from './Applyfilters'
 import { type } from '@testing-library/user-event/dist/type'
 
 const defaultState = {
@@ -75,7 +73,7 @@ function VehicleFilter({
   let powerid = ''
   let seatid = ''
   let starid = ''
-  const [state, dispatch] = useReducer(filterreducer, defaultState)
+  const [state, dispatch] = useReducer(defaultState)
 
   const makefilterbuttonactive = (id) => {
     if (
@@ -371,25 +369,7 @@ function VehicleFilter({
           </button>
         </div>
         <div className='pricerange'>
-          <button
-            className='applyfilter'
-            onClick={() =>
-              Applyfilters({
-                state,
-                vehicledata,
-                setVehicleDataItems,
-                vehicledataitems,
-                dispatch,
-                typeid,
-                powerid,
-                transid,
-                seatid,
-                starid,
-              })
-            }
-          >
-            Apply
-          </button>
+          <button className='applyfilter'>Apply</button>
           <button
             className='applyfilter'
             onClick={() => {
